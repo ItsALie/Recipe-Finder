@@ -6,6 +6,12 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <form action="/search" method="GET">
+    <label for="username">Enter username: </label>
+    <input id="username" type="text" name="name_field" value="username">
+    <label for="password">Enter password: </label>
+    <input id="password" type="text" name="name_field" value="password">
+    <input type="submit" value="OK">
+</form>
   </body>
 </html>
