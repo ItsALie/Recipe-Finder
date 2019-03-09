@@ -3,13 +3,15 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel = "stylesheet" type = "text/css" href="/stylesheets/main_page.css">
   </head>
   <body>
-    <h1><%= title %></h1>
-    <form action="/recipes" method="GET">
-    <label for="search">Enter Ingredient: </label>
-    <input id="search" type="text" name="name_field" value="">
-    <input type="submit" value="OK">
-</form>
+    <div class="main"> 
+        <h1><%= title %></h1>
+        <form action="/recipes" method="GET">
+            <input type="text" name="search" placeholder="Start cooking">
+            <input type="submit" value="Go">
+        </form>
+    </div>
   </body>
 </html>

@@ -3,12 +3,12 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/recipe_page.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <form action="/recipe_details" method="GET">
-    <label for="recipes">Recipes: </label>
-    <input type="submit" value="OK">
-</form>
+    <div id = "recipe_list">
+        <h2 style="text-align:center"><%= title %></h2>
+        <script src="/javascripts/recipes.js"></script>
+    </div>
   </body>
 </html>
