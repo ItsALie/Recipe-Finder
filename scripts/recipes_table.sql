@@ -13,16 +13,5 @@ INSERT INTO recipes (recipe_id, user_id, serving_size, name) VALUES (1, 1, "1.1"
 
 
 /* update the recipes name */
-UPDATE recipes SET name = 'noodles' WHERE recipe_id = 1;
+UPDATE recipes SET name = 'noodles' WHERE recipe_id = 1 AND user_id = 1;
 
-
-/* upadte the recipes name */
-UPDATE
-    recipes
-SET
-    CASE
-        recipes.user_id = users.user_id THEN recipes.name = "noodles";
-    WHERE
-        user_id = 1;
-
- 
