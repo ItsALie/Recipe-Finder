@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover; 
+    background: url(/images/food.jpg);
+    font-family: Arial, Helvetica, sans-serif
+}
+
+#recipe_list
+{
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    background-color: black;
+    color: white;
+    padding: 1% 0 3% 0;
+    margin-top: 1%;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  background-color: white;
+  cursor: pointer;
+  color: black;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}

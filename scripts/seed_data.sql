@@ -54,16 +54,16 @@ INSERT INTO `users` (`user_id`, `username`, `password`) VALUES (49, 'izabella11'
 INSERT INTO `users` (`user_id`, `username`, `password`) VALUES (50, 'mdouglas', 'aae84d9a108e57371ad9bc7a5400530b7f9796df');
 
 
-INSERT INTO "recipes" ("recipe_id", "user_id", "serving_size", "name") VALUES (1, 1, "2 servings", "Lasagna");
-INSERT INTO "recipes" ("recipe_id", "user_id", "serving_size", "name") VALUES (2, 2, "3 servings", "Burgers");
-INSERT INTO "recipes" ("recipe_id", "user_id", "serving_size", "name") VALUES (3, 3, "5 servings", "Salads");
-INSERT INTO "recipes" ("recipe_id", "user_id", "serving_size", "name") VALUES (4, 4, "7 servings", "Tacos");
-INSERT INTO "recipes" ("recipe_id", "user_id", "serving_size", "name") VALUES (5, 5, "1 servings", "Burrito");
+INSERT INTO recipes (recipe_id, user_id, serving_size, name) VALUES (1, 1, '2 servings', 'Lasagna');
+INSERT INTO recipes (recipe_id, user_id, serving_size, name) VALUES (2, 2, '3 servings', 'Burgers');
+INSERT INTO recipes (recipe_id, user_id, serving_size, name) VALUES (3, 3, '5 servings', 'Salads');
+INSERT INTO recipes (recipe_id, user_id, serving_size, name) VALUES (4, 4, '7 servings', 'Tacos');
+INSERT INTO recipes (recipe_id, user_id, serving_size, name) VALUES (5, 5, '1 servings', 'Burrito');
 
-INSERT INTO "comments" ("comments_id", "user_id", "recipe_id", "comments") VALUES (1, 1, 1, "That lasagna looks delicious!");
-INSERT INTO "comments" ("comments_id", "user_id", "recipe_id", "comments") VALUES (1, 1, 1, "Could I substitute the cheese for Daya?!");
-INSERT INTO "comments" ("comments_id", "user_id", "recipe_id", "comments") VALUES (2, 2, 2, "Those burgers looks delicious!");
-INSERT INTO "comments" ("comments_id", "user_id", "recipe_id", "comments") VALUES (3, 3, 3, "That salad looks delicious!");
-INSERT INTO "comments" ("comments_id", "user_id", "recipe_id", "comments") VALUES (4, 4, 4, "These tacos looks delicious!");
-INSERT INTO "comments" ("comments_id", "user_id", "recipe_id", "comments") VALUES (5, 5, 5, "That burrito looks delicious!");
+INSERT INTO comments (comments_id, user_id, recipe_id, comments) VALUES (1, 1, 1, "That lasagna looks delicious!");
+INSERT INTO comments (comments_id, user_id, recipe_id, comments) VALUES (1, 1, 1, "Could I substitute the cheese for Daya?!");
+INSERT INTO comments (comments_id, user_id, recipe_id, comments) VALUES (2, 2, 2, "Those burgers looks delicious!");
+INSERT INTO comments (comments_id, user_id, recipe_id, comments) VALUES (3, 3, 3, "That salad looks delicious!");
+INSERT INTO comments (comments_id, user_id, recipe_id, comments) VALUES (4, 4, 4, "These tacos looks delicious!");
+INSERT INTO comments (comments_id, user_id, recipe_id, comments) VALUES (5, 5, 5, "That burrito looks delicious!");
 
