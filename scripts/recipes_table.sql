@@ -15,3 +15,5 @@ INSERT INTO recipes (recipe_id, user_id, serving_size, name) VALUES (1, 1, "1.1"
 /* update the recipes name */
 UPDATE recipes SET name = 'noodles' WHERE recipe_id = 1 AND user_id = 1;
 
+/* Delete script to delete recipe */
+DELETE FROM recipes WHERE recipe_id = 1;

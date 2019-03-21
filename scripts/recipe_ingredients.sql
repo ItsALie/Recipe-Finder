@@ -1,5 +1,5 @@
 ***recipe_ingredients TABLE***
-
+p
 CREATE TABLE recipe_ingredients (
 recipe_ingredients_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 recipe_id INT NOT NULL,
