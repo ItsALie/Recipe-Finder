@@ -1,4 +1,5 @@
-***recipes TABLE***
+/* recipe table */
+USE recipeFinderDatabase;
 
 CREATE TABLE recipes (
 recipe_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
