@@ -13,7 +13,7 @@ name VARCHAR(40) NOT NULL
 INSERT INTO recipes (recipe_id, user_id, serving_size, name) VALUES (1, 1, "1.1", "fire rice");
 
 /* Update script to modify recipe names*/
-/* Modifu should only work if the logged in user matches the recipe user*/
+/* Modify should only work if the logged in user matches the recipe user*/
 UPDATE recipes SET name = 'noodles' WHERE recipe_id = 1 AND user_id = 1;
 
 /* Delete Recipe from the Recipe table */
