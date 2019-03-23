@@ -23,3 +23,7 @@ INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id
 /*creating script to get recipe ingredients and steps from recipe id*/
 
 SELECT I.name, RI.quanitity FROM ingredients AS I INNER JOIN recipe_ingredients AS RI ON I.ingredients_id = RI.ingredients_id;
+
+/* Deletes corresponding recipe_ingredient rows that have a matching recipe_ id */
+
+DELETE FROM recipe_ingredients_id WHERE recipe_id = 1;
