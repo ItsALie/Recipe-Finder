@@ -61,6 +61,7 @@ INSERT INTO recipes (recipe_id, user_id, serving_size, name) VALUES (1, 1, "2 se
 
 INSERT INTO comments (comments_id, user_id, recipe_id, comments) VALUES (1, 1, 1, "That lasagna looks delicious!");
 
+
 INSERT INTO  ingredient(ingredient_name) VALUES ("noodles");
 INSERT INTO  ingredient(ingredient_name) VALUES ("eggs");
 INSERT INTO  ingredient(ingredient_name) VALUES ("pepper");
