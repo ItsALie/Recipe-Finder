@@ -26,4 +26,4 @@ SELECT I.name, RI.quanitity FROM ingredients AS I INNER JOIN recipe_ingredients 
 
 /* Deletes corresponding recipe_ingredient rows that have a matching recipe_ id */
 
-DELETE FROM recipe_ingredients_id WHERE recipe_id = 1;
+DELETE FROM recipe_ingredients WHERE recipe_id = 1;
