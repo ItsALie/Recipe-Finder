@@ -1,5 +1,8 @@
 USE recipeFinderDatabase;
 
-UPDATE recipes, recipe_ingredients, 
-INNER JOIN recipes ON recipes.recipe_id = recipe_ingredients.recipe_id
-SET ingredients_id="" AND quantity="" WHERE user_id="" AND recipe_id="" AND ingredients_id="";
+
+UPDATE recipe_ingredients AS ingre
+INNER JOIN recipes AS reci ON reci.recipe_id = ingre.recipe_id
+SET ingre.ingredients_id=1,
+ingre.quantity = "2 kg"
+WHERE reci.user_id=2 AND ingre.recipe_id=2 AND ingre.ingredients_id=2;
