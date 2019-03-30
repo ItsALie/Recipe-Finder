@@ -10,13 +10,13 @@ quantity VARCHAR(40) NOT NULL
 );
 
 INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (1, 1, 1, "1 cup");
-INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (2, 2, 1, "1 kg");
-INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (3, 3, 1, "1 pang");
-INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (4, 4, 1, "1 grain");
-INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (5, 5, 1, "1 gram");
-INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (6, 6, 1, "1 miliigram");
-INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (7, 7, 1, "2 cup");
-INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (8, 1, 1, "3 cup");
+INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (2, 2, 2, "1 kg");
+INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (3, 3, 3, "1 pang");
+INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (4, 4, 4, "1 grain");
+INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (5, 5, 5, "1 gram");
+INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (6, 6, 6, "1 miliigram");
+INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (7, 7, 7, "2 cup");
+INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id, quanitity) VALUES (8, 1, 8, "3 cup");
 
 
 /* Joining two tables and selecting name of the ingredient and quanitity from two tables where the ingredient id is equal*/
@@ -24,6 +24,8 @@ INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id
 
 SELECT I.name, RI.quanitity FROM ingredients AS I INNER JOIN recipe_ingredients AS RI ON I.ingredients_id = RI.ingredients_id;
 
-/* Deletes corresponding recipe_ingredient rows that have a matching recipe_ id */
+/* Deletes corresponding recipe_ingredient table rows that have a matching recipe_ id */
 
 DELETE FROM recipe_ingredients WHERE recipe_id = 1;
+
+
