@@ -69,7 +69,8 @@ INSERT INTO  ingredient(ingredient_name) VALUES ("cheese");
 INSERT INTO  ingredient(ingredient_name) VALUES ("noodles");
 INSERT INTO  ingredient(ingredient_name) VALUES ("olive oil");
 
-SELECT * from users WHERE user_id = 1 AND password = '39e4c255a2890a88c7f9092e6c8a861e6514b62e' ;
 
-
+SELECT user_id from users WHERE user_id = 1 AND password = '39e4c255a2890a88c7f9092e6c8a861e6514b62e' ;
+UPDATE comments set comments = 'testComment' WHERE comments_id = 1 AND user_id ='christian26' AND recipe_id = 1 ;
+SELECT * from comments; 
 
