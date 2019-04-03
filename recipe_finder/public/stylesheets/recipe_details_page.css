@@ -9,15 +9,30 @@ body {
 .recipe_details
 {
     text-align: center;
-    margin: auto;
+    margin-top: 1%;
+    margin-left: 25%;
     width: 50%;
     background-color: black;
     color: white;
     padding: 1% 0 3% 0;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translate(-50%, -50%);
 }
 
+#details
+{
+    display: inline-flex;
+}
+
+#ingredients
+{
+    width: 50%;
+}
+
+#comments
+{
+    width: 50%;
+}
+
+ul
+{
+    list-style: none;
+}
