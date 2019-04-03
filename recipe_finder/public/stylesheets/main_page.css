@@ -16,3 +16,20 @@ body {
     margin-bottom: 1%;
     margin-left: 25%;
 }
+
+#recipe_info
+{
+    width: 50%;
+    margin-right: 5%;
+}
+
+#ingredient_info
+{
+    width: 50%;
+}
+
+#new_ingredient_form
+{
+    margin-bottom: 5%;
+    display: inline-flex;
+}
