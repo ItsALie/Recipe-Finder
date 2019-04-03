@@ -8,7 +8,8 @@ router.use(bodyParser.urlencoded({ extended: true }));
 var con = mysql.createConnection({
   host: "localhost",
   user: "admin",
-  password: "admin"
+  password: "admin",
+  database : "recipefinderdatabase"
 });
 
 con.connect(function(err) {
@@ -47,7 +48,7 @@ router.post('/delete_account', renderLogInPage);
 function findUser(req, res, next)
 {
     req.users = null;
-    con.query(("SELECT * FROM recipefinderdatabase.USERS WHERE USERNAME = '" + req.query.username + "' AND PASSWORD = '" + req.query.password + "';"), function (err, rows, fields) {
+    con.query(("SELECT * FROM USERS WHERE USERNAME = '" + req.query.username + "' AND PASSWORD = '" + req.query.password + "';"), function (err, rows, fields) {
       if (err) throw err
         if(rows.length !== 0) {
             req.users = rows;
@@ -74,7 +75,7 @@ function renderPageAfterSignIn(req, res)
 }
 
 function addRecipe(req, res, next) {    
-    con.query(("INSERT INTO recipefinderdatabase.recipes (user_id, serving_size, name) VALUES (" + req.body.user_id + ", '" + req.body.serving_size + "', '" + req.body.recipe_name + "');"), function (err, rows, fields) {
+    con.query(("INSERT INTO recipes (user_id, serving_size, name) VALUES (" + req.body.user_id + ", '" + req.body.serving_size + "', '" + req.body.recipe_name + "');"), function (err, rows, fields) {
       if (err) throw err
     });
     
@@ -84,7 +85,7 @@ function addRecipe(req, res, next) {
 
 function renderMainPage(req, res) {
     req.users = null;
-    con.query(("SELECT * FROM recipefinderdatabase.USERS WHERE USER_ID = " + req.body.user_id + ";"), function (err, rows, fields) {
+    con.query(("SELECT * FROM USERS WHERE USER_ID = " + req.body.user_id + ";"), function (err, rows, fields) {
       if (err) throw err
         if(rows.length !== 0) {
             req.users = rows;
@@ -104,7 +105,7 @@ function renderLogInPage(req, res) {
 }
 
 function findRecipes(req, res, next) {
-    con.query(("SELECT * FROM recipefinderdatabase.RECIPES WHERE NAME LIKE '%" + req.query.search + "%';"), function (err, rows, fields) {
+    con.query(("SELECT * FROM RECIPES WHERE NAME LIKE '%" + req.query.search + "%';"), function (err, rows, fields) {
       if (err) throw err
         if(rows.length !== 0) {
             req.recipes = rows;
@@ -118,7 +119,7 @@ function renderRecipesPage(req, res) {
 }
 
 function findRecipeDetails(req, res, next) {
-    con.query(("SELECT * FROM recipefinderdatabase.recipes r WHERE r.name = '" + req.query.recipe_name + "';"), function (err, rows, fields) {
+    con.query(("SELECT * FROM recipes r WHERE r.name = '" + req.query.recipe_name + "';"), function (err, rows, fields) {
       if (err) throw err
         if(rows.length !== 0) {
             req.recipes = rows;
@@ -133,7 +134,7 @@ function findRecipeDetails(req, res, next) {
 }
 
 function findIngredients(req, res, next) {
-    con.query(("SELECT * FROM recipefinderdatabase.INGREDIENT i JOIN recipefinderdatabase.recipe_ingredients ri ON i.ingredients_id = ri.ingredients_id WHERE ri.recipe_id = " + req.recipes[0].recipe_id + ";"), function (err, rows, fields) {
+    con.query(("SELECT * FROM INGREDIENT i JOIN recipe_ingredients ri ON i.ingredients_id = ri.ingredients_id WHERE ri.recipe_id = " + req.recipes[0].recipe_id + ";"), function (err, rows, fields) {
       if (err) throw err
         if(rows.length !== 0) {
             req.ingredients = rows;
@@ -149,7 +150,7 @@ function findIngredients(req, res, next) {
 }
 
 function findComments(req, res, next) {
-    con.query(("SELECT * FROM recipefinderdatabase.comments c WHERE c.recipe_id = " + req.recipes[0].recipe_id + ";"), function (err, rows, fields) {
+    con.query(("SELECT * FROM comments c WHERE c.recipe_id = " + req.recipes[0].recipe_id + ";"), function (err, rows, fields) {
       if (err) throw err
         if(rows.length !== 0) {
             req.comments = rows;
