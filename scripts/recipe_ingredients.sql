@@ -1,5 +1,5 @@
 ***recipe_ingredients TABLE***
-p
+
 CREATE TABLE recipe_ingredients (
 recipe_ingredients_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 recipe_id INT NOT NULL,
@@ -22,7 +22,7 @@ INSERT INTO recipe_ingredients (recipe_ingredients_id, recipe_id, ingredients_id
 /* Joining two tables and selecting name of the ingredient and quanitity from two tables where the ingredient id is equal*/
 /*creating script to get recipe ingredients and steps from recipe id*/
 
-SELECT I.name, RI.quanitity FROM ingredients AS I INNER JOIN recipe_ingredients AS RI ON I.ingredients_id = RI.ingredients_id;
+SELECT I.name FROM ingredients AS I INNER JOIN recipe_ingredients AS RI ON I.ingredients_id = RI.ingredients_id;
 
 /* Deletes corresponding recipe_ingredient table rows that have a matching recipe_ id */
 
