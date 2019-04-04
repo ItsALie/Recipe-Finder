@@ -6,8 +6,9 @@
     <link rel='stylesheet' href='/stylesheets/recipe_details_page.css' />
   </head>
   <body>
-    <div class = "recipe_details">
+    <div id= "recipe_details" class = "recipe_details">
         <h1><%= title %></h1>
+        <script src="/javascripts/recipe_details.js" recipes="<%= JSON.stringify(recipes) %>" ingredients="<%= JSON.stringify(ingredients) %>" comments="<%= JSON.stringify(comments) %>" users="<%=users%>"></script>
     </div>
 </form>
   </body>
