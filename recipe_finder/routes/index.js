@@ -45,7 +45,7 @@ router.post('/edit_account', renderMainPage);
 
 router.post('/delete_account', renderLogInPage);
 
-router.post('/delete_user', deleteUser)
+router.post('/delete_user', deleteUser);
 
 function findUser(req, res, next)
 {
