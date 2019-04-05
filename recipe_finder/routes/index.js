@@ -45,6 +45,8 @@ router.post('/edit_account', renderMainPage);
 
 router.post('/delete_account', renderLogInPage);
 
+router.post('/delete_user', deleteUser)
+
 function findUser(req, res, next)
 {
     req.users = null;
@@ -60,6 +62,14 @@ function findUser(req, res, next)
             return next();
         }
     });
+}
+
+function deleteUser(req, res, next) {
+    con.query(("DELETE FROM users WHERE user_id = " + req.query.user_id + ";"), function (err, rows, fields) {
+        if (err) throw err
+    });
+
+    return next();
 }
 
 function renderPageAfterSignIn(req, res)
