@@ -178,4 +178,14 @@ function renderRecipeDetailsPage(req, res) {
     res.render('recipe_details', { title: req.query.recipe_name, users: req.query.user_id, recipes: req.recipes, ingredients: req.ingredients, comments: req.comments });
 }
 
+function editUserNamePassword (req, res){
+    con.query(("UPDATE users set user_name ="+users[0].username+" WHERE user_id ="+users[0].user_id+"AND password ="+users[0].password+";"),function (err, rows, fields){
+        if (err){
+            return console.error(error.message);
+        }
+        console.log('Row affected:', rows.affectedRows);
+    });
+}
+    
+
 module.exports = router;
