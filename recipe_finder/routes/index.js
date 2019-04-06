@@ -179,7 +179,7 @@ function renderRecipeDetailsPage(req, res) {
 }
 
 function editUserNamePassword (req, res){
-    con.query(("UPDATE users set user_name ="+users[0].username+" WHERE user_id ="+users[0].user_id+"AND password ="+users[0].password+";"),function (err, rows, fields){
+    con.query(("UPDATE users set user_name ="+users[0].username+""," "password ="" WHERE user_id ="+users[0].user_id+"AND password ="+users[0].password+";"),function (err, rows, fields){
         if (err){
             return console.error(error.message);
         }
