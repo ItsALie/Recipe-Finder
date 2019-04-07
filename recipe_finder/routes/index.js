@@ -7,9 +7,9 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 var con = mysql.createConnection({
   host: "localhost",
-  user: "admin",
-  password: "admin",
-  database : "recipefinderdatabase"
+  user: "root",
+  password: "PASSWORD123",
+  database : "recipeFinderDatabase"
 });
 
 con.connect(function(err) {
@@ -41,7 +41,7 @@ router.post('/add_recipe', addRecipe, renderMainPage);
 
 router.post('/add_account', renderLogInPage);
 
-router.post('/edit_account', renderMainPage);
+router.post('/edit_account', editUserNamePassword, renderMainPage);
 
 router.post('/delete_account', renderLogInPage);
 
@@ -179,12 +179,9 @@ function renderRecipeDetailsPage(req, res) {
 }
 
 function editUserNamePassword (req, res){
-    con.query(("UPDATE users set user_name ="+users[0].username+""," "password ="" WHERE user_id ="+users[0].user_id+"AND password ="+users[0].password+";"),function (err, rows, fields){
-        if (err){
-            return console.error(error.message);
-        }
-        console.log('Row affected:', rows.affectedRows);
-    });
+    con.query(("UPDATE users set username ='"+req.body.username+"',password ='"+req.body.password+"' WHERE user_id ="+req.body.user_id+";"),function (err, rows, fields){
+        if (err) throw err
+    }); 
 }
     
 
