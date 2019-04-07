@@ -39,6 +39,10 @@ router.get('/recipe_details', findRecipeDetails, findIngredients, findComments, 
 
 router.post('/add_recipe', addRecipe, renderMainPage);  
 
+router.post('/edit_recipe', updateRecipe, findPostRecipe, findPostIngredients, findPostComments, renderPostRecipeDetailsPage);
+
+router.post('/delete_recipe', deleteRecipe, renderMainPage);
+
 router.post('/add_account', renderLogInPage);
 
 router.post('/edit_account', editUserNamePassword, renderMainPage);
@@ -92,6 +96,16 @@ function addRecipe(req, res, next) {
     return next();
 }
 
+function deleteRecipe(req, res, next){
+
+    if(req.body.user_id == req.body.recipe_user_id ){
+        con.query(("DELETE FROM RECIPE_INGREDIENTS WHERE recipe_id ="+req.body.recipe_id+"; \n"+
+                "DELETE FROM COMMENTS WHERE recipe_id ="+req.body.recipe_id+"; \n"+
+                "DELETE FROM RECIPES WHERE recipe_id ="+req.body.recipe_id+" ; \n"));
+    }
+ 
+}
+
 
 function renderMainPage(req, res) {
     req.users = null;
@@ -119,6 +133,11 @@ function findRecipes(req, res, next) {
       if (err) throw err
         if(rows.length !== 0) {
             req.recipes = rows;
+            return next();
+        }
+        else
+        {
+            req.recipes = {};
             return next();
         }
     });
