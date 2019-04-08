@@ -90,6 +90,29 @@ function findUser(req, res, next)
 }
 
 function deleteUser(req, res, next) {
+        
+    if (req.body.user_id == req.body.comment_user_id)
+    {
+        con.query(("DELETE FROM comments WHERE comments_id = " + req.body.comment_id + ";"), function (err, rows, fields) {
+          if (err) throw err
+        });
+    }
+
+    if (req.body.user_id == req.body.recipe_user_id)
+    {
+        con.query(("DELETE FROM comments WHERE recipe_id ="+req.body.recipe_id+";"), function (err, rows, fields) {
+          if (err) throw err
+        });
+        
+        con.query(("DELETE FROM recipe_ingredients WHERE recipe_id ="+req.body.recipe_id+";"), function (err, rows, fields) {
+          if (err) throw err
+        });
+
+        con.query(("DELETE FROM Recipes WHERE recipe_id ="+req.body.recipe_id+";"), function (err, rows, fields) {
+          if (err) throw err
+        });
+    }
+    
     con.query(("DELETE FROM users WHERE user_id = " + req.query.user_id + ";"), function (err, rows, fields) {
         if (err) throw err
     });
