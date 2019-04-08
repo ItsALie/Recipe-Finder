@@ -10,4 +10,4 @@ WHERE reci.user_id=2 AND ingre.recipe_id=2 AND ingre.ingredients_id=2;
 
 /* Update script to modify recipe names*/
 /* Modify should only work if the logged in user matches the recipe user*/
-UPDATE recipes SET name = 'noodles' WHERE recipe_id = 1 AND user_id = 1;
+UPDATE recipes SET name='noodles' WHERE recipe_id = 1 AND user_id = 1;
