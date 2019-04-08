@@ -8,4 +8,4 @@ SELECT * FROM recipes WHERE recipe_id="";
 -- Joining two tables and selecting name of the ingredient and quanitity from two tables where the ingredient id is equal
 -- creating script to get recipe ingredients from recipe id
 
-SELECT I.name FROM ingredients AS I INNER JOIN recipe_ingredients AS RI ON I.ingredients_id = RI.ingredients_id
+SELECT I.name FROM ingredients AS I INNER JOIN recipe_ingredients AS RI ON I.ingredients_id = RI.ingredients_id;
