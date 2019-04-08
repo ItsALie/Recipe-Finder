@@ -51,6 +51,27 @@ router.post('/delete_account', renderLogInPage);
 
 router.post('/delete_user', deleteUser);
 
+router.post('/add_comment', addComment, findPostRecipe, findPostIngredients, findPostComments, renderPostRecipeDetailsPage);
+
+router.post('/edit_comment', updateComment, findPostRecipe, findPostIngredients, findPostComments, renderPostRecipeDetailsPage);
+
+router.post('/delete_comment', deleteComment, findPostRecipe, findPostIngredients, findPostComments, renderPostRecipeDetailsPage);
+
+function updateRecipe(req, res, next)
+{
+    if (req.body.user_id == req.body.recipe_user_id)
+    {
+        con.query(("UPDATE recipes SET serving_size = '" + req.body.serving_size + "', name = '" + req.body.recipe_name + "' WHERE recipe_id = " + req.body.recipe_id + ";"), function (err, rows, fields) {
+          if (err) throw err
+        });
+    }
+    else
+    {
+        req.body.recipe_name = req.body.old_recipe_name;
+    }
+    return next();
+}
+
 function findUser(req, res, next)
 {
     req.users = null;
@@ -96,16 +117,109 @@ function addRecipe(req, res, next) {
     return next();
 }
 
-function deleteRecipe(req, res, next){
+function deleteRecipe(req, res, next)
+{
+    if (req.body.user_id == req.body.recipe_user_id)
+    {
+        con.query(("DELETE FROM comments WHERE recipe_id ="+req.body.recipe_id+";"), function (err, rows, fields) {
+          if (err) throw err
+        });
+        
+        con.query(("DELETE FROM recipe_ingredients WHERE recipe_id ="+req.body.recipe_id+";"), function (err, rows, fields) {
+          if (err) throw err
+        });
 
-    if(req.body.user_id == req.body.recipe_user_id ){
-        con.query(("DELETE FROM RECIPE_INGREDIENTS WHERE recipe_id ="+req.body.recipe_id+"; \n"+
-                "DELETE FROM COMMENTS WHERE recipe_id ="+req.body.recipe_id+"; \n"+
-                "DELETE FROM RECIPES WHERE recipe_id ="+req.body.recipe_id+" ; \n"));
+        con.query(("DELETE FROM Recipes WHERE recipe_id ="+req.body.recipe_id+";"), function (err, rows, fields) {
+          if (err) throw err
+        });
     }
- 
+    return next();
 }
 
+
+function addComment(req, res, next)
+{
+    con.query(("INSERT INTO comments (user_id, recipe_id, comments) VALUES (" + req.body.user_id + ", " + req.body.recipe_id + ", '" + req.body.comment + "');"), function (err, rows, fields) {
+      if (err) throw err
+    });
+    
+    return next();
+}
+
+function updateComment(req, res, next)
+{
+    if (req.body.user_id == req.body.comment_user_id)
+    {
+        con.query(("UPDATE comments SET comments = '" + req.body.comment + "' WHERE comments_id = " + req.body.comment_id + ";"), function (err, rows, fields) {
+          if (err) throw err
+        });
+    }
+    return next();
+}
+
+function deleteComment(req, res, next)
+{
+    if (req.body.user_id == req.body.comment_user_id)
+    {
+        con.query(("DELETE FROM comments WHERE comments_id = " + req.body.comment_id + ";"), function (err, rows, fields) {
+          if (err) throw err
+        });
+    }
+    return next();
+}
+
+function findPostRecipe(req, res, next)
+{
+    con.query(("SELECT * FROM recipes r WHERE r.recipe_id = " + req.body.recipe_id + ";"), function (err, rows, fields) {
+      if (err) throw err
+        if(rows.length !== 0) {
+            req.recipes = rows;
+            return next();
+        }
+        else
+        {
+            req.recipes = {};
+            return next();
+        }
+    });
+}
+
+function findPostIngredients(req, res, next)
+{
+    con.query(("SELECT * FROM INGREDIENT i JOIN recipe_ingredients ri ON i.ingredients_id = ri.ingredients_id WHERE ri.recipe_id = " + req.body.recipe_id + ";"), function (err, rows, fields) {
+      if (err) throw err
+        if(rows.length !== 0) {
+            req.ingredients = rows;
+            return next();
+        }
+        else
+        {
+            req.ingredients = {};
+            return next();
+        }
+    });
+}
+
+function findPostComments(req, res, next)
+{
+    con.query(("SELECT * FROM comments c WHERE c.recipe_id = " + req.body.recipe_id + ";"), function (err, rows, fields) {
+      if (err) throw err
+        if(rows.length !== 0) {
+            req.comments = rows;
+            return next();
+        }
+        else
+        {
+            req.comments = {};
+            return next();
+        }
+    });
+}
+
+
+function renderPostRecipeDetailsPage(req, res) {
+    res.render('recipe_details', { title: req.body.recipe_name, users: req.body.user_id, recipes: req.recipes, ingredients: req.ingredients, comments: req.comments });
+}
 
 function renderMainPage(req, res) {
     req.users = null;
