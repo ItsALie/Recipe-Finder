@@ -89,7 +89,7 @@ function renderPageAfterSignIn(req, res)
 }
 
 function addRecipe(req, res, next) {    
-    con.query(("INSERT INTO recipes (user_id, serving_size, name) VALUES (" + req.body.user_id + ", '" + req.body.serving_size + "', '" + req.body.recipe_name + "');"), function (err, rows, fields) {
+    con.query(("INSERT INTO recipes (serving_size, name) VALUES (" + req.body.serving_size + "', '" + req.body.recipe_name + "');"), function (err, rows, fields) {
       if (err) throw err
     });
     
