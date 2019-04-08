@@ -8,14 +8,28 @@ body {
 
 .main{
     text-align: center;
-    margin: auto;
     width: 50%;
     background-color: black;
     color: white;
     padding: 1% 0 3% 0;
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translate(-50%, -50%);
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 25%;
+}
+
+#recipe_info
+{
+    width: 50%;
+    margin-right: 5%;
+}
+
+#ingredient_info
+{
+    width: 50%;
+}
+
+#new_ingredient_form
+{
+    margin-bottom: 5%;
+    display: inline-flex;
 }

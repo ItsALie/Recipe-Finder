@@ -9,12 +9,13 @@ body {
 #recipe_list
 {
     text-align: center;
-    margin: auto;
+    margin-left: 25%;
     width: 50%;
     background-color: black;
     color: white;
-    padding: 1% 0 3% 0;
+    padding: 1% 0 1% 0;
     margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .card {

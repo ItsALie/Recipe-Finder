@@ -3,19 +3,18 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel = "stylesheet" type = "text/css" href="/stylesheets/login_page.css">
+    <link rel = "stylesheet" type = "text/css" href="/stylesheets/new_account.css">
   </head>
   <body>
     <div class="loginbox">
         <img src = "/images/profile.png" class = "avatar">
-        <h1>Login here </h1>
-        <form action="/sign_in" method="GET">
+        <h1>Create New Account </h1>
+        <form action="/add_account" method="GET">
             <p>Username</p>
             <input type="text" name="username" placeholder="Enter username">
             <p>Password</p>
             <input type = "password" name="password" placeholder="Enter password">
-            <input type = "submit" name = "" value = "Login">
-            <a href="/new_account" >Don't have an account?</a>
+            <input type = "submit" name = "" value = "Register">
         </form>
     </div>
   </body>

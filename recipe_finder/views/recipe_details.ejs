@@ -6,9 +6,36 @@
     <link rel='stylesheet' href='/stylesheets/recipe_details_page.css' />
   </head>
   <body>
-    <div class = "recipe_details">
+    <div id= "recipe_details" class = "recipe_details">
         <h1><%= title %></h1>
+        <script src="/javascripts/recipe_details.js" recipes="<%= JSON.stringify(recipes) %>" ingredients="<%= JSON.stringify(ingredients) %>" comments="<%= JSON.stringify(comments) %>" users="<%=users%>"></script>
     </div>
-</form>
+    <div id="edit_recipe" class="recipe_details">
+        <h2>Edit <%=recipes[0].name%></h2>
+        <form action="/edit_recipe" method="POST">
+            <input type="text" name="user_id" value="<%=users%>" hidden>
+            <input type="text" name="recipe_user_id" value="<%=recipes[0].user_id%>" hidden>
+            <input type="text" name="recipe_id" value="<%=recipes[0].recipe_id%>" hidden>
+            <input type="text" name="old_recipe_name" value="<%=recipes[0].name%>" hidden>
+            Recipe:<br>
+            <input type="text" name="recipe_name" value="<%=recipes[0].name%>"><br>
+            Servings:<br>
+            <input type="text" name="serving_size" value="<%=recipes[0].serving_size%>"><br>
+            <br>
+            <input type="submit" value="Save">
+        </form>
+        <form action="/delete_recipe" method="POST">
+            <input type="text" name="user_id" value="<%=users%>" hidden>
+            <input type="text" name="recipe_user_id" value="<%=recipes[0].user_id%>" hidden>
+            <input type="text" name="recipe_id" value="<%=recipes[0].recipe_id%>" hidden>
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+    <div id="add_comment" class="recipe_details">
+        <script src="/javascripts/add_comment.js" recipes="<%= JSON.stringify(recipes) %>" users="<%=users%>"></script>
+    </div>
+    <div id="edit_comments">
+        <script src="/javascripts/edit_comments.js" recipes="<%= JSON.stringify(recipes) %>" comments="<%= JSON.stringify(comments) %>" users="<%=users%>"></script>
+    </div>
   </body>
 </html>

@@ -9,9 +9,46 @@
     <div class="main"> 
         <h1><%= title %></h1>
         <form action="/recipes" method="GET">
+            <input type="text" name="user_id" value="<%=users[0].user_id%>" hidden>
             <input type="text" name="search" placeholder="Start cooking">
             <input type="submit" value="Go">
         </form>
     </div>
+    <div class="main">
+        <h1>New Recipe</h1>
+        <form action="/add_recipe" method="POST">
+            <input type="text" name="user_id" value="<%=users[0].user_id%>" hidden>
+            <div id="new_ingredient_form">
+                <div id="recipe_info">
+                    Recipe:<br>
+                    <input type="text" name="recipe_name" value=""><br>
+                    Servings:<br>
+                    <input type="text" name="serving_size" value=""><br>
+                </div>
+            </div>
+            <br>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+    <div class="main">
+        <h1>Edit Account</h1>
+        <form action="/edit_account" method="POST">
+            <input type="text" name="user_id" value="<%=users[0].user_id%>" hidden>
+                    Username:<br>
+                    <input type="text" name="username" value="<%=users[0].username%>"><br>
+                    Password:<br>
+                    <input type="text" name="password" value="<%=users[0].password%>"><br>
+            <br>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+    <div class="main">
+        <h1>Delete Account</h1>
+        <form action="/delete_account" method="POST">
+            <input type="text" name="user_id" value="<%=users[0].user_id%>" hidden>
+            <input type="submit" value="Delete">
+        </form>
+    </div>
   </body>
+  <script src="/javascripts/new_recipe.js"></script>
 </html>

@@ -11,17 +11,6 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "admin",
-  password: "admin"
-});
-
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -41,8 +30,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/search', indexRouter);
 app.use('/recipes', indexRouter);
-app.use('/search', indexRouter);
-app.use('/recipe_details', usersRouter);
+app.use('/recipe_details', indexRouter);
+app.use('/new_account', indexRouter);
+app.use('/add_recipe', indexRouter);
+app.use('/edit_recipe', indexRouter);
+app.use('/delete_recipe', indexRouter);
+app.use('/sign_in', indexRouter);
+app.use('/add_account', indexRouter);
+app.use('/edit_account', indexRouter);
+app.use('/delete_account', indexRouter);
+app.use('/add_comment', indexRouter);
+app.use('/edit_comment', indexRouter);
+app.use('/delete_comment', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
