@@ -43,19 +43,26 @@ router.post('/edit_recipe', updateRecipe, findPostRecipe, findPostIngredients, f
 
 router.post('/delete_recipe', deleteRecipe, renderMainPage);
 
-router.post('/add_account', renderLogInPage);
+router.post('/add_account', addUser, renderLogInPage);
 
 router.post('/edit_account', editUserNamePassword, renderMainPage);
 
-router.post('/delete_account', renderLogInPage);
-
-router.post('/delete_user', deleteUser);
+router.post('/delete_account', deleteUser, renderLogInPage);
 
 router.post('/add_comment', addComment, findPostRecipe, findPostIngredients, findPostComments, renderPostRecipeDetailsPage);
 
 router.post('/edit_comment', updateComment, findPostRecipe, findPostIngredients, findPostComments, renderPostRecipeDetailsPage);
 
 router.post('/delete_comment', deleteComment, findPostRecipe, findPostIngredients, findPostComments, renderPostRecipeDetailsPage);
+
+function addUser(req, res, next)
+{
+    con.query(("INSERT INTO users (username, password) VALUES ('" + req.body.username + "', '" + req.body.password + "');"), function (err, rows, fields) {
+      if (err) throw err
+    });
+    
+    return next();
+}
 
 function updateRecipe(req, res, next)
 {
@@ -90,30 +97,49 @@ function findUser(req, res, next)
 }
 
 function deleteUser(req, res, next) {
-        
-    if (req.body.user_id == req.body.comment_user_id)
-    {
-        con.query(("DELETE FROM comments WHERE comments_id = " + req.body.comment_id + ";"), function (err, rows, fields) {
-          if (err) throw err
-        });
-    }
-
-    if (req.body.user_id == req.body.recipe_user_id)
-    {
-        con.query(("DELETE FROM comments WHERE recipe_id ="+req.body.recipe_id+";"), function (err, rows, fields) {
-          if (err) throw err
-        });
-        
-        con.query(("DELETE FROM recipe_ingredients WHERE recipe_id ="+req.body.recipe_id+";"), function (err, rows, fields) {
-          if (err) throw err
-        });
-
-        con.query(("DELETE FROM Recipes WHERE recipe_id ="+req.body.recipe_id+";"), function (err, rows, fields) {
-          if (err) throw err
-        });
-    }
     
-    con.query(("DELETE FROM users WHERE user_id = " + req.query.user_id + ";"), function (err, rows, fields) {
+    // Delete all comments written by the user    
+    con.query(("SELECT * FROM comments wHERE user_id = " + req.body.user_id + ";"), function (err, rows, fields) {
+      if (err) throw err
+      if (rows != 0)
+      {
+        for (let i = 0; i < rows.length; i++)
+        {
+            con.query(("DELETE FROM comments WHERE comments_id = " + rows[i].comments_id + ";"), function (e, r, f) {
+                if (err) throw err
+            });
+        }
+      }
+    });
+    
+    con.query(("DELETE ri FROM recipe_ingredients ri JOIN recipes r ON ri.recipe_id = r.recipe_id WHERE r.user_id = " + req.body.user_id + ";"), function (err, rows, fields) {
+      if (err) throw err
+    });
+    
+    //Delete all recipes, links to ingredients and comments on recipes owned by the user
+    con.query(("SELECT * FROM recipes wHERE user_id = " + req.body.user_id + ";"), function (err, rows, fields) {
+      if (err) throw err
+      if (rows != 0)
+      {
+        for (let i = 0; i < rows.length; i++)
+        {
+          console.log("row:" + rows[i].recipe_id );
+            con.query(("DELETE FROM comments WHERE recipe_id = " + rows[i].recipe_id + ";"), function (e, r, f) {
+                if (err) throw err
+            });
+        }
+      }
+    });
+    
+    con.query(("DELETE FROM comments WHERE user_id = " + req.body.user_id + ";"), function (err, rows, fields) {
+        if (err) throw err
+    });
+    
+    con.query(("DELETE FROM recipes WHERE user_id = " + req.body.user_id + ";"), function (err, rows, fields) {
+        if (err) throw err
+    });
+    
+    con.query(("DELETE FROM users WHERE user_id = " + req.body.user_id + ";"), function (err, rows, fields) {
         if (err) throw err
     });
 
@@ -133,7 +159,7 @@ function renderPageAfterSignIn(req, res)
 }
 
 function addRecipe(req, res, next) {    
-    con.query(("INSERT INTO recipes (serving_size, name) VALUES (" + req.body.serving_size + "', '" + req.body.recipe_name + "');"), function (err, rows, fields) {
+    con.query(("INSERT INTO recipes (user_id, serving_size, name) VALUES (" + req.body.user_id + ", '" + req.body.serving_size + "', '" + req.body.recipe_name + "');"), function (err, rows, fields) {
       if (err) throw err
     });
     
@@ -334,10 +360,12 @@ function renderRecipeDetailsPage(req, res) {
     res.render('recipe_details', { title: req.query.recipe_name, users: req.query.user_id, recipes: req.recipes, ingredients: req.ingredients, comments: req.comments });
 }
 
-function editUserNamePassword (req, res){
+function editUserNamePassword (req, res, next){
     con.query(("UPDATE users set username ='"+req.body.username+"',password ='"+req.body.password+"' WHERE user_id ="+req.body.user_id+";"),function (err, rows, fields){
         if (err) throw err
     }); 
+    
+    return next();
 }
     
 
